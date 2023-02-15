@@ -6,3 +6,9 @@
 <% end %>
 
 <p>Total Cost: <%= @recipe.total_cost %> </p>
+
+<%= form_tag("/recipes/#{@recipe.id}", method: :patch, local: true) do %>
+    <p>Ingredient ID</p>
+    <%= text_field_tag(:ingredient_id, params[:ingredient_id]) %>
+    <%= submit_tag ('Submit') %>
+<% end %>
