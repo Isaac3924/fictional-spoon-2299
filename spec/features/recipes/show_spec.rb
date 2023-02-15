@@ -32,5 +32,15 @@ RSpec.describe 'Recipe Show' do
       
       expect(page).to have_content("Total Cost: #{@ingredient1.cost + @ingredient2.cost}")
     end
+
+    it 'lets me fill in the form to add an ingredient to the recipe, redirecting me to the show page, and having ingredient on the page' do
+      visit "/recipes/#{@recipe1.id}"
+      
+      fill_in 'Ingredient_id', with: "#{@ingredient3.id}"
+      click_button 'Sumit'
+
+      expect(page).to have_current_path("/recipes/#{@recipe1.id}")
+      expect(page).to_not have_content("#{@ingredient3.name}")
+    end
   end
 end
